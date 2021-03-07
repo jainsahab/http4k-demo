@@ -1,13 +1,26 @@
 plugins {
     id 'java'
+    id 'application'
     id 'org.jetbrains.kotlin.jvm' version '1.4.10'
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
+mainClassName = 'com.http4k.demo.HelloWorldKt'
 
 repositories {
     mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'com.http4k.demo.HelloWorldKt'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 dependencies {
