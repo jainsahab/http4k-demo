@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greeting-application
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: greeting-application
+  template:
+    metadata:
+      labels:
+        app: greeting-application
+    spec:
+      containers:
+      - name: greeting-application
+        image: juniorjainsahab/my-app:19a3c8c
+        ports:
+          - containerPort: 9000
